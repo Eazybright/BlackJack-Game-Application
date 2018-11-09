@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Page Title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    </head>
+    <body>
+        <button onclick="promptUser();">Prompt me</button>
+        <p id="demo"></p>
+
+        <div id="dem">
+            <h2>My Ajax page</h2>
+            <button type="button" onclick="loadDoc()">Change Content</button>
+        </div>
+    </body>
+    <script>
+        function loadDoc(){
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById('dem').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "ajax_info.txt", true);
+            xhttp.send();
+        }
+        function promptUser(){
+            var txt = "";
+            var name = window.prompt("Enter your name");
+            if(name != null || name == ""){
+                txt = "hello " + name;
+            }
+            document.getElementById('demo').innerHTML = txt;
+        }
+    </script>
+</html>
